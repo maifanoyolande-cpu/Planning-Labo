@@ -17,7 +17,8 @@
   --maruplonge:#f0766a;   /* rouge corail - Maru plonge */
   --willprepa:#b07fd4;    /* mauve - Will prepa */
   --maruprepa:#9aa5a3;    /* gris - Maru prepa */
-  --conge:#1c6b63;        /* vert foncé - congé */
+  --remp:#8a6bbf;         /* violet - plonge remplaçante */
+  --conge:#c62828;        /* rouge - congé / arrêt maladie */
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--paper);color:var(--ink);
@@ -70,7 +71,7 @@ footer{margin-top:28px;padding-top:12px;border-top:1px solid var(--line);
 <header>
   <div class="eyebrow">Roulotte SODI · Labo</div>
   <h1>Agenda du labo<br>Juillet → Décembre 2026</h1>
-  <div class="sub">Qui travaille, qui est en congé, chaque jour. Congés en vert foncé.</div>
+  <div class="sub">Qui travaille, qui est en congé, chaque jour. Congés et arrêts maladie en rouge.</div>
 </header>
 
 <div class="leg">
@@ -84,7 +85,8 @@ footer{margin-top:28px;padding-top:12px;border-top:1px solid var(--line);
   <div class="lg"><span class="sq" style="background:var(--maruprepa)"></span>Maru · prépa</div>
   <div class="lg"><span class="sq" style="background:var(--maruplonge)"></span>Maru · plonge</div>
   <div class="lg"><span class="sq" style="background:var(--maruwill)"></span>Maru et Will · renfort</div>
-  <div class="lg"><span class="sq" style="background:var(--conge)"></span>Congé</div>
+  <div class="lg"><span class="sq" style="background:var(--remp)"></span>Plonge remplaçante</div>
+  <div class="lg"><span class="sq" style="background:var(--conge)"></span>Congé / arrêt maladie</div>
 </div>
 
 <div id="cal"></div>
@@ -92,7 +94,7 @@ footer{margin-top:28px;padding-top:12px;border-top:1px solid var(--line);
 <h2>Comment on pose un congé</h2>
 <div class="rules">
   <ol>
-    <li><b>Deux endroits pour demander : Agendrix et mon Messenger perso.</b> Vous posez la demande sur Agendrix, et vous me l'envoyez aussi en message privé. Les deux, pas l'un ou l'autre — comme ça rien ne se perd.</li>
+    <li><b>Deux endroits pour demander : Agendrix et mon Messenger perso.</b> Vous posez la demande sur Agendrix, et vous me l'envoyez aussi en message privé (Maru). Les deux, pas l'un ou l'autre — comme ça rien ne se perd.</li>
     <li><b>Prévenir le plus tôt possible.</b> Plus vous m'y prenez tôt, plus j'ai de marge pour organiser le remplacement et dire oui.</li>
     <li><b>La réponse arrive sous 3 jours.</b> Ce délai, c'est le temps qu'il me faut pour faire le tour de l'équipe et trouver qui peut vous remplacer. Je cherche toujours un moyen d'accepter la demande.</li>
     <li><b>Pas deux personnes du même poste en même temps.</b> Deux absences sur la plonge ou deux sur la prépa en simultané, le labo ne tient pas. La deuxième demande sera décalée.</li>
@@ -101,14 +103,16 @@ footer{margin-top:28px;padding-top:12px;border-top:1px solid var(--line);
 </div>
 
 <div class="note">
-  <b>Un mot sur l'équité.</b> Roland et Juanita sont off tous les week-ends, c'est dans leur contrat et on ne les forcera pas à tourner le week-end. Cela dit, dès qu'ils peuvent, ils viennent faire des remplacements — et je les en remercie.<br><br>
-  Le but maintenant, c'est que les autres puissent aussi prendre des jours off le week-end. Pour ça on commence à former <b>Tania à la préparation</b>, et une autre personne à la plonge. Quand il n'y a vraiment plus personne, c'est Maru et moi qui descendons au labo — vous le voyez sur l'agenda, en rouge et en gris.
+  <b>Un mot sur l'équité.</b> Merci à tous ceux qui viennent travailler sur leur jour off pour faire tourner le labo. Chacun l'a fait à un moment ou à un autre cette année, et ça se voit sur l'agenda. Sans ça, on n'aurait pas tenu.<br><br>
+  Pour que tout le monde puisse avoir son week-end, samedi et dimanche, on va former <b>Tania à la préparation</b> et <b>une autre personne à la plonge</b>. C'est ce qui nous permettra de faire tourner l'équipe correctement.<br><br>
+  Pour toute question sur le planning, les congés ou les remplacements, c'est à moi que vous vous adressez.<br><br>
+  <span style="font-weight:700">Maru — responsable du labo</span>
 </div>
 
 <h2>Le point critique</h2>
 <div class="rules">
   <ol>
-    <li><b>Trouver une remplaçante à Tania sur la plonge.</b> C'est le seul vrai point bloquant aujourd'hui. Tant que personne ne peut prendre la plonge du week-end, Tania ne peut pas basculer sur la préparation — et tant qu'elle n'y bascule pas, on n'a pas la marge pour donner des week-ends off aux autres. Une seule personne suffit sur la plonge : c'est un poste, pas une équipe.</li>
+    <li><b>Trouver une remplaçante à Tania sur la plonge.</b> C'est le seul vrai point bloquant aujourd'hui. Tant que personne ne peut prendre la plonge du week-end, Tania ne peut pas basculer sur la préparation — et tant qu'elle n'y bascule pas, on n'a pas la marge pour donner des week-ends off aux autres.</li>
 
   </ol>
 </div>
@@ -129,12 +133,14 @@ const C={
  wp:{c:"willprepa",l:"Will prépa"},
  mp:{c:"maruprepa",l:"Maru prépa"},
  mz:{c:"maruplonge",l:"Maru plonge"},
+ rp:{c:"remp",l:"Plonge remplaçante"},
  mw:{c:"maruwill",l:"Maru et Will"}
 };
 // congés : code perso + libellé
 const CG={
  J:"Juanita · congé", R:"Roland · congé", S:"Sam · congé",
- M:"Maihaere · congé", T:"Tania · congé"
+ M:"Maihaere · congé", T:"Tania · congé",
+ Mm:"Maihaere · arrêt maladie"
 };
 
 // Données lues sur les captures Agendrix.
@@ -143,25 +149,25 @@ const D={};
 function set(d,w,c){D[d]={w:w||[],c:c||[]};}
 
 /* ---------- JUILLET ---------- */
-set("2026-07-01",["jp","ro","mh"]);
+set("2026-07-01",["jp","ro","sa"]);
 set("2026-07-02",["jp","ro","sa"]);
-set("2026-07-03",["jp","ro","sa"]);
+set("2026-07-03",["jp","mh","sa"]);
 set("2026-07-04",["tp","mh","sa"]);
-set("2026-07-05",["tp","mh","tx"],["S"]);
+set("2026-07-05",["tp","mh","wp"],["S"]);
 set("2026-07-06",["jp","ro","mh"]);
 set("2026-07-07",["jp","ro","mh"]);
 set("2026-07-08",["jp","ro","sa"]);
 set("2026-07-09",["jp","ro","sa"]);
 set("2026-07-10",["tp","mh","sa"]);
-set("2026-07-11",["tp","ro","mz"],["M"]);
-set("2026-07-12",["jp","ro","mz"],["M"]);
+set("2026-07-11",["tp","ro","sa"],["M"]);
+set("2026-07-12",["jp","ro","sa"],["M"]);
 set("2026-07-13",["jp","ro","mh"]);
-set("2026-07-14",["jp","ro","mh"]);
-set("2026-07-15",["jp","ro","sa"]);
-set("2026-07-16",["tp","ro","sa"],["J"]);
-set("2026-07-17",["tp","mh","sa"],["J"]);
-set("2026-07-18",["tp","mh","sa"]);
-set("2026-07-19",["jp","mh","sa"]);
+set("2026-07-14",["jp","sa","ro"],["Mm"]);
+set("2026-07-15",["jp","sa","ro"],["Mm"]);
+set("2026-07-16",["tp","sa","ro"],["Mm"]);
+set("2026-07-17",["tp","sa","mp","wp"],["Mm"]);
+set("2026-07-18",["jp","ro","sa"],["Mm"]);
+set("2026-07-19",["jp","ro","sa"],["Mm"]);
 set("2026-07-20",["jp","ro","mh"]);
 set("2026-07-21",["jp","mh","ro"]);
 set("2026-07-22",["jp","sa","ro"]);
@@ -169,7 +175,7 @@ set("2026-07-23",["jp","sa","ro"]);
 set("2026-07-24",["jp","sa","mh","tx"]);
 set("2026-07-25",["tp","sa","mh"]);
 set("2026-07-26",["tp","sa","mh"]);
-set("2026-07-27",["tp","mh","mw"]);
+set("2026-07-27",["tp","mh","mz"]);
 set("2026-07-28",["tp","mh","sa"]);
 set("2026-07-29",["jp","ro","sa"]);
 set("2026-07-30",["jp","ro","sa"]);
@@ -178,14 +184,14 @@ set("2026-07-31",["jp","mh","ro","tx"]);
 /* ---------- AOÛT ---------- */
 set("2026-08-01",["jp","mh","ro","tx"],["S"]);
 set("2026-08-02",["jp","mh","ro","tx"],["S"]);
-set("2026-08-03",["mz","mh","tx"],["J","R"]);
+set("2026-08-03",["mz","mh","wp"],["J","R"]);
 set("2026-08-04",["mz","mh","wp"],["J","R"]);
 set("2026-08-05",["tp","sa","mp"],["J","R"]);
 set("2026-08-06",["tp","sa","mp"],["J","R"]);
 set("2026-08-07",["tp","mh","sa"],["J","R"]);
 set("2026-08-08",["tp","mh","sa"],["R"]);
 set("2026-08-09",["tp","mh","sa"],["R"]);
-set("2026-08-10",["jp","mh","mz"],["R"]);
+set("2026-08-10",["jp","mh","mp"],["R"]);
 set("2026-08-11",["jp","mh","tx"],["R"]);
 set("2026-08-12",["jp","sa","tx"],["R"]);
 set("2026-08-13",["jp","sa","tx"],["R"]);
@@ -217,11 +223,11 @@ set("2026-09-05",["mh","sa","tp"]);
 set("2026-09-06",["mh","sa","tp"]);
 set("2026-09-07",["jp","ro","tx"],["M"]);
 set("2026-09-08",["jp","ro","tx"],["M"]);
-set("2026-09-09",["jp","sa","mp"],["M"]);
-set("2026-09-10",["jp","sa","mp"],["M"]);
+set("2026-09-09",["jp","sa","ro"],["M"]);
+set("2026-09-10",["jp","sa","ro"],["M"]);
 set("2026-09-11",["jp","sa","tx"],["M"]);
-set("2026-09-12",["tp","sa","tx"],["M"]);
-set("2026-09-13",["tp","sa","tx"],["M"]);
+set("2026-09-12",["tp","sa","mp"],["M"]);
+set("2026-09-13",["tp","sa","mp"],["M"]);
 set("2026-09-14",["jp","mh","ro"]);
 set("2026-09-15",["jp","mh","ro"]);
 set("2026-09-16",["jp","sa","ro"]);
@@ -264,17 +270,17 @@ set("2026-10-20",["jp","mh","ro"]);
 set("2026-10-21",["jp","ro","tx"],["S"]);
 set("2026-10-22",["jp","ro","tx"],["S"]);
 set("2026-10-23",["jp","mh","tx"],["S"]);
-set("2026-10-24",["tp","mh","tx"],["S"]);
-set("2026-10-25",["tp","mh","tx"],["S"]);
-set("2026-10-26",["jp","mh","ro"]);
-set("2026-10-27",["jp","mh","ro"]);
-set("2026-10-28",["jp","ro","tx"]);
-set("2026-10-29",["jp","ro","tx"]);
-set("2026-10-30",["jp","mh","tx"]);
-set("2026-10-31",["tp","mh","tx"]);
+set("2026-10-24",["rp","mh","tx"],["S"]);
+set("2026-10-25",["rp","mh","tx"],["S"]);
+set("2026-10-26",["jp","mh","ro"],["S"]);
+set("2026-10-27",["jp","mh","ro"],["S"]);
+set("2026-10-28",["jp","ro","tx"],["S"]);
+set("2026-10-29",["jp","ro","tx"],["S"]);
+set("2026-10-30",["jp","mh","tx"],["S"]);
+set("2026-10-31",["rp","mh","tx"],["S"]);
 
 /* ---------- NOVEMBRE ---------- */
-set("2026-11-01",["tp","mh","tx"]);
+set("2026-11-01",["rp","mh","tx"],["S"]);
 set("2026-11-02",["jp","mh","ro"]);
 set("2026-11-03",["jp","mh","ro"]);
 set("2026-11-04",["jp","sa","ro"]);
